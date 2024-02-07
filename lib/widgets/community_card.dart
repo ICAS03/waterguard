@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:waterguard/screens/community_screen_details.dart';
+import '../models/colors.dart';
 
 class CommunityCard extends StatelessWidget {
   String name;
@@ -14,7 +16,7 @@ class CommunityCard extends StatelessWidget {
     return Container(
       width: 360,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Colors.blueAccent),
+          borderRadius: BorderRadius.circular(20), color: primaryBlue),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -41,13 +43,14 @@ class CommunityCard extends StatelessWidget {
                       Text(
                         name,
                         style: TextStyle(
-                            color: Colors.white,
+                            color: backgroundwhite,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
                         datePosted,
-                        style: TextStyle(color: Colors.white.withOpacity(0.4)),
+                        style:
+                            TextStyle(color: backgroundwhite.withOpacity(0.4)),
                       )
                     ],
                   )
@@ -58,7 +61,7 @@ class CommunityCard extends StatelessWidget {
               ),
               Text(
                 content,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: backgroundwhite),
               )
             ]),
           ),
@@ -67,11 +70,14 @@ class CommunityCard extends StatelessWidget {
             height: 40,
             padding: EdgeInsets.symmetric(vertical: 4, horizontal: 16),
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 213, 1),
+                color: secondaryYellow,
                 borderRadius: BorderRadiusDirectional.only(
                     bottomStart: Radius.circular(20),
                     bottomEnd: Radius.circular(20))),
-            child: EngagementPost(),
+            child: EngagementPost(
+              numOfComments: 20,
+              numOfLikes: 20,
+            ),
           )
         ],
       ),
@@ -80,20 +86,41 @@ class CommunityCard extends StatelessWidget {
 }
 
 class EngagementPost extends StatelessWidget {
-  const EngagementPost({super.key});
+  int numOfLikes;
+  int numOfComments;
+  EngagementPost({required this.numOfLikes, required this.numOfComments});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // xde likes icons
+        Text(numOfLikes.toString()),
+        SizedBox(
+          width: 8,
+        ),
+        Icon(Icons.favorite),
+        SizedBox(
+          width: 12,
+        ),
+        Text(numOfComments.toString()),
+        SizedBox(
+          width: 8,
+        ),
         Icon(Icons.message),
         SizedBox(
-          width: 20,
+          width: 8,
         ),
-        Icon(Icons.share),
+        Icon(
+          Icons.share,
+        ),
         Spacer(),
-        GestureDetector(onTap: () => {}, child: Text("View All Comments"))
+        GestureDetector(
+            // Change the on tap to Navigator.pushNamed later
+            onTap: () => {},
+            child: Text(
+              "View All Comments",
+              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+            ))
       ],
     );
   }
