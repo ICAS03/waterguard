@@ -24,14 +24,24 @@ class _registerScreenState extends State<registerScreen> {
           children: [
             Container(
               alignment: Alignment.topLeft,
-              margin: const EdgeInsets.only(top: 75, left: 38),
-              child: Text(
-                "CREATE AN ACCOUNT",
-                style: TextStyle(
-                    color: custom_color.black,
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold),
-              ),
+              margin: const EdgeInsets.only(top: 75, right: 170),
+              child: Column(children: [
+                Row(children: [
+                  GestureDetector(
+                    onTap: () => {Navigator.of(context).pop()},
+                    child: Icon(Icons.keyboard_arrow_left_rounded,
+                        color: custom_color.black, size: 50),
+                  ),
+                ]),
+                Container(
+                  margin: const EdgeInsets.only(left: 28),
+                  child: Text("CREATE AN ACCOUNT",
+                      style: TextStyle(
+                          color: custom_color.black,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold)),
+                ),
+              ]),
             ),
             Expanded(
                 child: Container(
