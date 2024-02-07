@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waterguard/models/colors.dart';
+import 'package:waterguard/screens/community_screen.dart';
+import 'package:waterguard/screens/community_screen_details.dart';
 import 'package:waterguard/screens/register_screen.dart';
 
 import 'models/colors.dart';
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundwhite,
         fontFamily: 'Roboto',
       ),
-      home: const registerScreen(),
+      home: CommunityScreen(),
     );
   }
 }
