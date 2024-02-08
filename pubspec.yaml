@@ -60,13 +60,12 @@ flutter:
   assets:
     - lib/assets/photos/donation-1.png
     - lib/assets/photos/volunteers-1.png
+    - lib/assets/images/WaterGuard.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
-  assets:
-    - lib/assets/images/WaterGuard.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
