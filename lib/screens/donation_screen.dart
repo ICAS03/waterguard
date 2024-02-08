@@ -70,7 +70,7 @@ class DonationScreen extends StatelessWidget {
               organizations: "Malaysia Red Crescent",
               location: "Port Klang, Selangor",
               description:
-                  "In response to the devastating floods that have wreaked havoc on communities, displacing families ",
+                  "In response to the devastating floods that have wreaked havoc on communities, displacing families...",
             )
           ]),
         ),

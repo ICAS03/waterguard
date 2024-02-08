@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:waterguard/models/colors.dart';
+import 'package:waterguard/screens/single_donation_screen.dart';
 
 class DonationCard extends StatelessWidget {
   String imgPath;
@@ -78,7 +79,17 @@ class DonationCard extends StatelessWidget {
                 Spacer(),
                 // Change the ontap later
                 GestureDetector(
-                  onTap: () => {},
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => singleDonationScreen(
+                        imgPath: imgPath,
+                        donationTitle: donationTitle,
+                        organizations: organizations,
+                        currentAmount: currentAmount,
+                        targetAmount: targetAmount,
+                      ),
+                    ),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

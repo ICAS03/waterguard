@@ -5,6 +5,7 @@ import 'package:waterguard/screens/community_screen.dart';
 import 'package:waterguard/screens/community_screen_details.dart';
 import 'package:waterguard/screens/donation_screen.dart';
 import 'package:waterguard/screens/onBoarding_screen.dart';
+import 'package:waterguard/screens/payment_screen.dart';
 import 'package:waterguard/screens/register_screen.dart';
 import 'models/colors.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundwhite,
         fontFamily: 'Roboto',
       ),
-      home: const registerScreen(),
+      home: const paymentScreen(),
       routes: {
         registerScreen.routeName: (context) => registerScreen(),
         loginScreen.routeName: (context) => loginScreen()
