@@ -4,9 +4,11 @@ import 'package:waterguard/screens/login_screen.dart';
 import 'package:waterguard/screens/community_screen.dart';
 import 'package:waterguard/screens/community_screen_details.dart';
 import 'package:waterguard/screens/donation_screen.dart';
+import 'package:waterguard/screens/new_card_screen.dart';
 import 'package:waterguard/screens/onBoarding_screen.dart';
 import 'package:waterguard/screens/payment_screen.dart';
 import 'package:waterguard/screens/register_screen.dart';
+import 'package:waterguard/screens/single_donation_screen.dart';
 import 'models/colors.dart';
 
 void main() {
@@ -29,7 +31,11 @@ class MyApp extends StatelessWidget {
       home: const registerScreen(),
       routes: {
         registerScreen.routeName: (context) => registerScreen(),
-        loginScreen.routeName: (context) => loginScreen()
+        onboardingScreen.routeName: (context) => onboardingScreen(),
+        loginScreen.routeName: (context) => loginScreen(),
+        paymentScreen.routeName: (context) => paymentScreen(),
+        newCardScreen.routeName: (context) => newCardScreen(),
+        DonationScreen.routeName: (context) => DonationScreen(),
       },
     );
   }
