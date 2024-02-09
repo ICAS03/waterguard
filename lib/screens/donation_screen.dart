@@ -6,6 +6,7 @@ import '../models/colors.dart';
 
 class DonationScreen extends StatelessWidget {
   const DonationScreen({super.key});
+  static const routeName = '/maindonation';
 
   @override
   Widget build(BuildContext context) {
