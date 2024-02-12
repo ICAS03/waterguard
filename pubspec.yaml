@@ -61,6 +61,7 @@ flutter:
     - lib/assets/photos/donation-1.png
     - lib/assets/photos/volunteers-1.png
     - lib/assets/images/WaterGuard.png
+    - lib/assets/images/charity.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
