@@ -44,7 +44,6 @@ class lastdonationScreen extends StatelessWidget {
                   ],
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       alignment: Alignment.center,
@@ -85,6 +84,7 @@ class lastdonationScreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
+                    //this is not done//
                     Text(
                       'by Share99 sdn.bhd',
                       style: TextStyle(

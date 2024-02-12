@@ -5,6 +5,7 @@ import '../models/colors.dart';
 
 class CommunityScreen extends StatelessWidget {
   const CommunityScreen({super.key});
+  static const routeName = '/community';
 
   @override
   Widget build(BuildContext context) {

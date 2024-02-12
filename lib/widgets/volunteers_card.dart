@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:waterguard/models/colors.dart';
+import 'package:waterguard/screens/single_volunteer_screen.dart';
 
 class VolunteersCard extends StatelessWidget {
   String imgPath;
@@ -66,7 +67,16 @@ class VolunteersCard extends StatelessWidget {
               ),
               // Change the ontap later
               GestureDetector(
-                onTap: () => {},
+                onTap: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => singleVolunteerScreen(
+                          imgPath: imgPath,
+                          volunteerTitle: '${position} - ${organizations}',
+                          date: 'June 17 2023',
+                          floodvictims: '1500 + flood victims',
+                          location: location,
+                          organization: organizations)))
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
