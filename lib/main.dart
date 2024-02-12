@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundwhite,
         fontFamily: 'Roboto',
       ),
-      home: const paymentScreen(),
+      home: const registerScreen(),
       routes: {
         registerScreen.routeName: (context) => registerScreen(),
         onboardingScreen.routeName: (context) => onboardingScreen(),
