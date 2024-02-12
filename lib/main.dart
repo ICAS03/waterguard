@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waterguard/models/colors.dart';
+import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/login_screen.dart';
 import 'package:waterguard/screens/community_screen.dart';
 import 'package:waterguard/screens/community_screen_details.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundwhite,
         fontFamily: 'Roboto',
       ),
-      home: const registerScreen(),
+      home: const paymentScreen(),
       routes: {
         registerScreen.routeName: (context) => registerScreen(),
         onboardingScreen.routeName: (context) => onboardingScreen(),

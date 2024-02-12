@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
+import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/new_card_screen.dart';
 import 'package:waterguard/widgets/new_card.dart';
 import 'package:waterguard/widgets/payment_card_row.dart';
@@ -14,7 +15,13 @@ class paymentScreen extends StatefulWidget {
 }
 
 class _paymentScreenState extends State<paymentScreen> {
+  String selectedAmount = "";
+  final TextEditingController amountController = TextEditingController();
   bool isClicked = false;
+  bool isClickedInSheet = false;
+  bool isClickedButton1 = false;
+  bool isClickedButton2 = false;
+  bool isClickedButton3 = false;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -167,15 +174,14 @@ class _paymentScreenState extends State<paymentScreen> {
                     ),
                     GestureDetector(
                       onTap: () => {
-                        setState(() => {isClicked = !isClicked})
+                        onDonateAmountSelected('RM 50', isClickedButton1),
+                        setState(() => isClickedButton1 = !isClickedButton1)
                       },
                       child: Container(
                           width: 350,
                           height: 50,
                           decoration: BoxDecoration(
-                              color: isClicked
-                                  ? custom_color.primaryAccent
-                                  : custom_color.backgroundwhite,
+                              color: custom_color.backgroundwhite,
                               borderRadius: BorderRadius.circular(20)),
                           alignment: Alignment.center,
                           child: Text(
@@ -183,7 +189,7 @@ class _paymentScreenState extends State<paymentScreen> {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
-                                color: isClicked
+                                color: isClickedButton1
                                     ? custom_color.primaryAccent
                                     : custom_color.black),
                           )),
@@ -193,15 +199,14 @@ class _paymentScreenState extends State<paymentScreen> {
                     ),
                     GestureDetector(
                       onTap: () => {
-                        setState(() => {isClicked = !isClicked})
+                        onDonateAmountSelected('RM 100', isClickedButton2),
+                        setState(() => isClickedButton2 = !isClickedButton2)
                       },
                       child: Container(
                           width: 350,
                           height: 50,
                           decoration: BoxDecoration(
-                              color: isClicked
-                                  ? custom_color.primaryAccent
-                                  : custom_color.backgroundwhite,
+                              color: custom_color.backgroundwhite,
                               borderRadius: BorderRadius.circular(20)),
                           alignment: Alignment.center,
                           child: Text(
@@ -209,7 +214,7 @@ class _paymentScreenState extends State<paymentScreen> {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
-                                color: isClicked
+                                color: isClickedButton2
                                     ? custom_color.primaryAccent
                                     : custom_color.black),
                           )),
@@ -219,15 +224,14 @@ class _paymentScreenState extends State<paymentScreen> {
                     ),
                     GestureDetector(
                       onTap: () => {
-                        setState(() => {isClicked = !isClicked})
+                        onDonateAmountSelected('RM 150', isClickedButton3),
+                        setState(() => isClickedButton3 = !isClickedButton3)
                       },
                       child: Container(
                           width: 350,
                           height: 50,
                           decoration: BoxDecoration(
-                              color: isClicked
-                                  ? custom_color.primaryAccent
-                                  : custom_color.backgroundwhite,
+                              color: custom_color.backgroundwhite,
                               borderRadius: BorderRadius.circular(20)),
                           alignment: Alignment.center,
                           child: Text(
@@ -235,7 +239,7 @@ class _paymentScreenState extends State<paymentScreen> {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
-                                color: isClicked
+                                color: isClickedButton3
                                     ? custom_color.primaryAccent
                                     : custom_color.black),
                           )),
@@ -260,6 +264,7 @@ class _paymentScreenState extends State<paymentScreen> {
                     ),
                     TextField(
                         textInputAction: TextInputAction.next,
+                        controller: amountController,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
@@ -273,12 +278,14 @@ class _paymentScreenState extends State<paymentScreen> {
                       height: 10,
                     ),
                     GestureDetector(
-                      onTap: () => {},
+                      onTap: () => {
+                        handleDonation(),
+                      },
                       child: Container(
                           width: double.infinity,
                           height: 50,
                           decoration: BoxDecoration(
-                              color: custom_color.primaryBlue,
+                              color: custom_color.backgroundwhite,
                               borderRadius: BorderRadius.circular(20)),
                           alignment: Alignment.center,
                           child: Text(
@@ -286,11 +293,32 @@ class _paymentScreenState extends State<paymentScreen> {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w700,
-                                color: custom_color.backgroundwhite
+                                color: custom_color.primaryAccent
                                     .withOpacity(0.8)),
                           )),
-                    )
+                    ),
                   ],
                 ),
               )));
+
+  void onDonateAmountSelected(String amount, bool isClicked) {
+    setState(() {
+      selectedAmount = amount;
+      isClickedInSheet = isClicked;
+    });
+  }
+
+  void handleDonation() {
+    if (selectedAmount.isNotEmpty || amountController.text.isNotEmpty) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => lastdonationScreen(
+              amount: selectedAmount.isNotEmpty
+                  ? selectedAmount
+                  : amountController.text),
+        ),
+      );
+    } else {}
+  }
 }
