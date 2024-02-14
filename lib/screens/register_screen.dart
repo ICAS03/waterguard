@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:waterguard/auth.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
 import 'package:waterguard/screens/login_screen.dart';
 
@@ -16,7 +18,18 @@ class _registerScreenState extends State<registerScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+
   @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    addressController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -24,7 +37,7 @@ class _registerScreenState extends State<registerScreen> {
           children: [
             Container(
               alignment: Alignment.topLeft,
-              margin: const EdgeInsets.only(top: 75, right: 170),
+              margin: const EdgeInsets.only(top: 60, right: 170),
               child: Column(children: [
                 Row(children: [
                   GestureDetector(
@@ -45,12 +58,36 @@ class _registerScreenState extends State<registerScreen> {
             ),
             Expanded(
                 child: Container(
-              margin: const EdgeInsets.only(top: 20),
-              padding: const EdgeInsets.all(33),
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(15.0),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    "Name",
+                    style: TextStyle(
+                        color: custom_color.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                      textInputAction: TextInputAction.next,
+                      controller: nameController,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide.none),
+                          filled: true,
+                          contentPadding: const EdgeInsets.all(10),
+                          hintText: "Enter Name",
+                          fillColor: custom_color.grey)),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   Text(
                     "Email",
                     style: TextStyle(
@@ -73,7 +110,7 @@ class _registerScreenState extends State<registerScreen> {
                           hintText: "Enter Email Address",
                           fillColor: custom_color.grey)),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     "Password",
@@ -97,7 +134,7 @@ class _registerScreenState extends State<registerScreen> {
                           hintText: "Enter Password",
                           fillColor: custom_color.grey)),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     "Phone Number",
@@ -111,7 +148,7 @@ class _registerScreenState extends State<registerScreen> {
                   ),
                   TextField(
                       textInputAction: TextInputAction.next,
-                      controller: emailController,
+                      controller: phoneController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -121,7 +158,7 @@ class _registerScreenState extends State<registerScreen> {
                           hintText: "Enter phone number",
                           fillColor: custom_color.grey)),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Text(
                     "Address",
@@ -135,7 +172,7 @@ class _registerScreenState extends State<registerScreen> {
                   ),
                   TextField(
                       textInputAction: TextInputAction.next,
-                      controller: emailController,
+                      controller: addressController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -145,14 +182,13 @@ class _registerScreenState extends State<registerScreen> {
                           hintText: "Enter house address",
                           fillColor: custom_color.grey)),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   Center(
                     child: _errorMessage(),
                   ),
                   GestureDetector(
-                    onTap: () =>
-                        Navigator.of(context).pushNamed(loginScreen.routeName),
+                    onTap: () => {createUserWithEmailAndPassword()},
                     child: Container(
                         width: double.infinity,
                         height: 50,
@@ -187,5 +223,25 @@ class _registerScreenState extends State<registerScreen> {
           fontSize: 14,
           fontWeight: FontWeight.w600),
     );
+  }
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      await Auth()
+          .createUserWithEmailAndPassword(
+              emailController.text,
+              passwordController.text,
+              addressController.text,
+              phoneController.text,
+              nameController.text)!
+          .then((value) =>
+              Navigator.of(context).pushNamed(loginScreen.routeName));
+    } on FirebaseAuthException catch (e) {
+      setState(
+        () {
+          errorMessage = e.message!;
+        },
+      );
+    }
   }
 }
