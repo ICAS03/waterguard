@@ -72,6 +72,10 @@ flutter:
     - lib/assets/images/red_dot.png
     - lib/assets/images/yellow_dot.png
     - lib/assets/images/green_dot.png
+    - lib/assets/images/green_indicator.png
+    - lib/assets/images/red_indicator.png
+    - lib/assets/images/yellow_indicator.png
+    - lib/assets/images/blue_indicator.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
