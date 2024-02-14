@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:waterguard/auth_widget_tree.dart';
 import 'package:waterguard/models/colors.dart';
 import 'package:waterguard/navigation.dart';
+import 'package:waterguard/providers/user_provider.dart';
 import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/last_volunteer_screen.dart';
 import 'package:waterguard/screens/login_screen.dart';
@@ -28,23 +31,30 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        scaffoldBackgroundColor: backgroundwhite,
-        fontFamily: 'Roboto',
-      ),
-      home: Navigation(),
-      routes: {
-        registerScreen.routeName: (context) => registerScreen(),
-        onboardingScreen.routeName: (context) => onboardingScreen(),
-        loginScreen.routeName: (context) => loginScreen(),
-        paymentScreen.routeName: (context) => paymentScreen(),
-        newCardScreen.routeName: (context) => newCardScreen(),
-        DonationScreen.routeName: (context) => DonationScreen(),
-        volunteerDetailScreen.routeName: (context) => volunteerDetailScreen(),
-        lastVolunteerScreen.routeName: (context) => lastVolunteerScreen()
-      },
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(
+            value: UserProvider(),
+          )
+        ],
+        child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              scaffoldBackgroundColor: backgroundwhite,
+              fontFamily: 'Roboto',
+            ),
+            home: AuthWidgetTree(),
+            routes: {
+              registerScreen.routeName: (context) => registerScreen(),
+              onboardingScreen.routeName: (context) => onboardingScreen(),
+              loginScreen.routeName: (context) => loginScreen(),
+              paymentScreen.routeName: (context) => paymentScreen(),
+              newCardScreen.routeName: (context) => newCardScreen(),
+              DonationScreen.routeName: (context) => DonationScreen(),
+              volunteerDetailScreen.routeName: (context) =>
+                  volunteerDetailScreen(),
+              lastVolunteerScreen.routeName: (context) => lastVolunteerScreen(),
+              Navigation.routeName: (context) => Navigation()
+            }));
   }
 }

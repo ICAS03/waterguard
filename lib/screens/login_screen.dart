@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:waterguard/auth.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
+import 'package:waterguard/navigation.dart';
 import 'package:waterguard/screens/register_screen.dart';
 
 class loginScreen extends StatefulWidget {
@@ -12,6 +15,9 @@ class loginScreen extends StatefulWidget {
 }
 
 class _loginScreenState extends State<loginScreen> {
+  String errorMessage = '';
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +65,7 @@ class _loginScreenState extends State<loginScreen> {
                   ),
                   TextField(
                       textInputAction: TextInputAction.next,
+                      controller: emailController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -82,6 +89,7 @@ class _loginScreenState extends State<loginScreen> {
                   ),
                   TextField(
                       textInputAction: TextInputAction.next,
+                      controller: passwordController,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -94,6 +102,7 @@ class _loginScreenState extends State<loginScreen> {
                     height: 40,
                   ),
                   GestureDetector(
+                    onTap: () => {signInWithEmailAndPassword()},
                     child: Container(
                         width: double.infinity,
                         height: 50,
@@ -153,8 +162,10 @@ class _loginScreenState extends State<loginScreen> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(registerScreen.routeName),
+                          onTap: () => {
+                            Navigator.of(context)
+                                .pushNamed(registerScreen.routeName)
+                          },
                           child: Text(
                             "Sign Up",
                             style: (TextStyle(
@@ -176,5 +187,34 @@ class _loginScreenState extends State<loginScreen> {
         ),
       ),
     );
+  }
+
+  Widget _errorMessage() {
+    return Text(
+      errorMessage == '' ? '' : 'Incorrect? $errorMessage',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+          color: custom_color.primaryAccent,
+          fontSize: 14,
+          fontWeight: FontWeight.w600),
+    );
+  }
+
+  Future<void> signInWithEmailAndPassword() async {
+    try {
+      await Auth()
+          .signInWithEmailAndPassword(
+            emailController.text,
+            passwordController.text,
+          )
+          .then(
+              (value) => Navigator.of(context).pushNamed(Navigation.routeName));
+    } on FirebaseAuthException catch (e) {
+      setState(
+        () {
+          errorMessage = e.message!;
+        },
+      );
+    }
   }
 }

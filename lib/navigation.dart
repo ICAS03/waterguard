@@ -8,6 +8,7 @@ import 'package:waterguard/screens/profile_screen.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
 
 class Navigation extends StatefulWidget {
+  static const routeName = '/navigation';
   const Navigation({super.key});
 
   @override
