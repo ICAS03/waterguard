@@ -61,9 +61,8 @@ class singleVolunteerScreen extends StatelessWidget {
             ],
           ),
         ),
-        Positioned(
-            bottom: 20,
-            right: 5,
+        Align(
+            alignment: Alignment.bottomCenter,
             child: GestureDetector(
               onTap: () => {
                 Navigator.of(context)

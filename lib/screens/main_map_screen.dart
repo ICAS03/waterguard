@@ -33,6 +33,45 @@ class _mainMapScreenState extends State<mainMapScreen> {
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30)),
           ),
+          title: Container(
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('Indicator Monitor'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Image(
+                          image: AssetImage(
+                              'lib/assets/images/green_indicator.png')),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Image(
+                          image: AssetImage(
+                              'lib/assets/images/blue_indicator.png')),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Image(
+                          image: AssetImage(
+                              'lib/assets/images/yellow_indicator.png')),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Image(
+                          image: AssetImage(
+                              'lib/assets/images/red_indicator.png')),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
           actions: [IconButton(onPressed: () => {}, icon: Icon(Icons.search))],
         ),
         body: Container(

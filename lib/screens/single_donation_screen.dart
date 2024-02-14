@@ -102,33 +102,33 @@ class singleDonationScreen extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-              bottom: 20,
-              right: 5,
-              child: GestureDetector(
-                onTap: () => {
-                  Navigator.of(context).pushNamed(paymentScreen.routeName),
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                        width: 350,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: custom_color.primaryBlue,
-                            borderRadius: BorderRadius.circular(20)),
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Donate Now',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: custom_color.backgroundwhite),
-                        )),
-                  ],
-                ),
-              ))
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () => {
+                Navigator.of(context).pushNamed(paymentScreen.routeName),
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                      width: 350,
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: custom_color.primaryBlue,
+                          borderRadius: BorderRadius.circular(20)),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Donate Now',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: custom_color.backgroundwhite),
+                      )),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
