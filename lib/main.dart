@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:waterguard/models/colors.dart';
 import 'package:waterguard/navigation.dart';
@@ -15,8 +16,9 @@ import 'package:waterguard/screens/single_donation_screen.dart';
 import 'package:waterguard/screens/volunteers_details_screen.dart';
 import 'models/colors.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
