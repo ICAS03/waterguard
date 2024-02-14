@@ -22,6 +22,7 @@ class _paymentScreenState extends State<paymentScreen> {
   bool isClickedButton1 = false;
   bool isClickedButton2 = false;
   bool isClickedButton3 = false;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
