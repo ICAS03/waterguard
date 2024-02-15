@@ -76,6 +76,7 @@ flutter:
     - lib/assets/images/red_indicator.png
     - lib/assets/images/yellow_indicator.png
     - lib/assets/images/blue_indicator.png
+    - lib/assets/photos/map_sample.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
