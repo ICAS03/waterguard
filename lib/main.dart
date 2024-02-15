@@ -5,6 +5,7 @@ import 'package:waterguard/auth_widget_tree.dart';
 import 'package:waterguard/models/colors.dart';
 import 'package:waterguard/navigation.dart';
 import 'package:waterguard/providers/user_provider.dart';
+import 'package:waterguard/screens/explore_screen.dart';
 import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/last_volunteer_screen.dart';
 import 'package:waterguard/screens/login_screen.dart';
@@ -17,6 +18,7 @@ import 'package:waterguard/screens/payment_screen.dart';
 import 'package:waterguard/screens/register_screen.dart';
 import 'package:waterguard/screens/single_donation_screen.dart';
 import 'package:waterguard/screens/volunteers_details_screen.dart';
+import 'package:waterguard/screens/explore_screen.dart';
 import 'models/colors.dart';
 
 Future<void> main() async {
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: backgroundwhite,
               fontFamily: 'Roboto',
             ),
-            home: AuthWidgetTree(),
+            home: ExploreScreen(),
             routes: {
               registerScreen.routeName: (context) => registerScreen(),
               onboardingScreen.routeName: (context) => onboardingScreen(),
@@ -54,7 +56,8 @@ class MyApp extends StatelessWidget {
               volunteerDetailScreen.routeName: (context) =>
                   volunteerDetailScreen(),
               lastVolunteerScreen.routeName: (context) => lastVolunteerScreen(),
-              Navigation.routeName: (context) => Navigation()
+              Navigation.routeName: (context) => Navigation(),
+              ExploreScreen.routeName: (context) => ExploreScreen()
             }));
   }
 }
