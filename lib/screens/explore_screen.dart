@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:waterguard/widgets/payment_card_row.dart';
 import '../models/colors.dart';
 
 class ExploreScreen extends StatelessWidget {
