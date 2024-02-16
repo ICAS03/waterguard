@@ -5,6 +5,7 @@ import 'package:waterguard/auth_widget_tree.dart';
 import 'package:waterguard/models/colors.dart';
 import 'package:waterguard/navigation.dart';
 import 'package:waterguard/providers/user_provider.dart';
+import 'package:waterguard/screens/explore_screen.dart';
 import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/last_volunteer_screen.dart';
 import 'package:waterguard/screens/login_screen.dart';
