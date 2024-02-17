@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: backgroundwhite,
               fontFamily: 'Roboto',
             ),
-            home: ExploreScreen(),
+            home: AuthWidgetTree(),
             routes: {
               registerScreen.routeName: (context) => registerScreen(),
               onboardingScreen.routeName: (context) => onboardingScreen(),

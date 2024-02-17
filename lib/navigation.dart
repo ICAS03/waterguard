@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:waterguard/screens/airtag_screen.dart';
 import 'package:waterguard/screens/community_screen.dart';
 import 'package:waterguard/screens/donation_screen.dart';
+import 'package:waterguard/screens/explore_screen.dart';
 import 'package:waterguard/screens/main_map_screen.dart';
 import 'package:waterguard/screens/profile_screen.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
