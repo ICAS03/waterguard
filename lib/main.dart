@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:waterguard/auth_widget_tree.dart';
 import 'package:waterguard/models/colors.dart';
 import 'package:waterguard/navigation.dart';
+import 'package:waterguard/providers/forum_provider.dart';
 import 'package:waterguard/providers/user_provider.dart';
+import 'package:waterguard/screens/create_forum_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
 import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/last_volunteer_screen.dart';
@@ -37,7 +39,8 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider.value(
             value: UserProvider(),
-          )
+          ),
+          ChangeNotifierProvider.value(value: ForumProvider())
         ],
         child: MaterialApp(
             title: 'Flutter Demo',
@@ -45,7 +48,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: backgroundwhite,
               fontFamily: 'Roboto',
             ),
-            home: ExploreScreen(),
+            home: AuthWidgetTree(),
             routes: {
               registerScreen.routeName: (context) => registerScreen(),
               onboardingScreen.routeName: (context) => onboardingScreen(),
@@ -57,7 +60,8 @@ class MyApp extends StatelessWidget {
                   volunteerDetailScreen(),
               lastVolunteerScreen.routeName: (context) => lastVolunteerScreen(),
               Navigation.routeName: (context) => Navigation(),
-              ExploreScreen.routeName: (context) => ExploreScreen()
+              ExploreScreen.routeName: (context) => ExploreScreen(),
+              CreateNewForum.routeName: (context) => CreateNewForum(),
             }));
   }
 }
