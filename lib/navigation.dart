@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waterguard/screens/airtag_screen.dart';
 import 'package:waterguard/screens/community_screen.dart';
 import 'package:waterguard/screens/donation_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
@@ -28,9 +27,9 @@ class _NavigationState extends State<Navigation> {
   bool _isLoading = true;
 
   List<Widget> screens = [
-    mainMapScreen(),
-    airtagScreen(),
     DonationScreen(),
+    ExploreScreen(),
+    mainMapScreen(),
     CommunityScreen(),
     profileScreen(),
   ];
@@ -46,10 +45,10 @@ class _NavigationState extends State<Navigation> {
         child: FloatingActionButton(
           backgroundColor: currentIndex == 2
               ? custom_color.primaryAccent
-              : custom_color.backgroundwhite,
+              : custom_color.primaryBlue,
           onPressed: () => navigationBar.onTap!(2),
           child: Icon(
-            Icons.navigation_rounded,
+            Icons.home_rounded,
             size: NavBarIconSize,
             color: custom_color.backgroundwhite,
           ),
@@ -86,26 +85,26 @@ class _NavigationState extends State<Navigation> {
               BottomNavigationBarItem(
                   label: '',
                   icon: Icon(
-                    Icons.home_rounded,
+                    Icons.handshake_rounded,
                     size: NavBarIconSize,
                   )),
               BottomNavigationBarItem(
                   label: '',
                   icon: Icon(
-                    Icons.person_pin_circle_rounded,
+                    Icons.navigation_rounded,
                     size: NavBarIconSize,
                   )),
               const BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
-                  Icons.navigation_rounded,
+                  Icons.home_rounded,
                   size: 0,
                 ),
               ),
               BottomNavigationBarItem(
                   label: '',
                   icon: Icon(
-                    Icons.handshake_rounded,
+                    Icons.person_pin_rounded,
                     size: NavBarIconSize,
                   )),
               BottomNavigationBarItem(

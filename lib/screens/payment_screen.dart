@@ -54,8 +54,11 @@ class _paymentScreenState extends State<paymentScreen> {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [paymentCard()],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [paymentCard()],
+                ),
               ),
               SizedBox(
                 height: 20,

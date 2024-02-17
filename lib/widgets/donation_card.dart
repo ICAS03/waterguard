@@ -40,8 +40,12 @@ class DonationCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
-            child: Image(
-              image: AssetImage(imgPath),
+            child: Container(
+              width: 107,
+              height: double.infinity,
+              child: Image(
+                image: AssetImage(imgPath),
+              ),
             ),
           ),
           SizedBox(
