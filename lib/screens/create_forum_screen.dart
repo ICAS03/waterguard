@@ -64,7 +64,7 @@ class _CreateNewForumState extends State<CreateNewForum> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${currentUser.name}',
+                      currentUser.name,
                       style: TextStyle(color: custom_color.black),
                     ),
                     Text(

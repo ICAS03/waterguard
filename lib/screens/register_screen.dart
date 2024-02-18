@@ -32,7 +32,10 @@ class _registerScreenState extends State<registerScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         child: Column(
           children: [
             Container(

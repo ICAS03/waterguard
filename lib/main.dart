@@ -7,6 +7,7 @@ import 'package:waterguard/navigation.dart';
 import 'package:waterguard/providers/forum_provider.dart';
 import 'package:waterguard/providers/user_provider.dart';
 import 'package:waterguard/screens/create_forum_screen.dart';
+import 'package:waterguard/screens/donation_history_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
 import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/last_volunteer_screen.dart';
