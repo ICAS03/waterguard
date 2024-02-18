@@ -29,7 +29,7 @@ class DonationScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             TotalDonationCard(
@@ -124,7 +124,7 @@ class TotalDonationCard extends StatelessWidget {
       child: Row(children: [
         Image(image: AssetImage(imgPath)),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Gold Contributor",

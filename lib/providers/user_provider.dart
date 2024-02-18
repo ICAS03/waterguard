@@ -44,11 +44,11 @@ class UserProvider with ChangeNotifier {
         .get()
         .then(
       (snapshot) {
-        userProviderData.id = snapshot.data()!['id'];
-        userProviderData.name = snapshot.data()!['name'];
-        userProviderData.email = snapshot.data()!['email'];
-        userProviderData.phone = snapshot.data()!['phone'];
-        userProviderData.address = snapshot.data()!['address'];
+        userProviderData.id = snapshot.data()!['address'];
+        userProviderData.name = snapshot.data()!['email'];
+        userProviderData.email = snapshot.data()!['id'];
+        userProviderData.phone = snapshot.data()!['name'];
+        userProviderData.address = snapshot.data()!['phone'];
       },
     );
   }
