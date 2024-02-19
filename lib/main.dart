@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider.value(
             value: UserProvider(),
           ),
-          ChangeNotifierProvider.value(value: ForumProvider())
+          ChangeNotifierProvider.value(value: ForumProvider()),
         ],
         child: MaterialApp(
             title: 'Flutter Demo',

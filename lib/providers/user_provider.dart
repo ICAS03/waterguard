@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../auth.dart';
 import '../models/user_model.dart';
 
 class UserProvider with ChangeNotifier {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
   UserModel userProviderData = UserModel(
     id: '', // Initialize with the desired value
     name: '', // Initialize with the desired value
@@ -44,11 +46,11 @@ class UserProvider with ChangeNotifier {
         .get()
         .then(
       (snapshot) {
-        userProviderData.id = snapshot.data()!['address'];
-        userProviderData.name = snapshot.data()!['email'];
-        userProviderData.email = snapshot.data()!['id'];
-        userProviderData.phone = snapshot.data()!['name'];
-        userProviderData.address = snapshot.data()!['phone'];
+        userProviderData.address = snapshot.data()!['address'];
+        userProviderData.email = snapshot.data()!['email'];
+        userProviderData.id = snapshot.data()!['id'];
+        userProviderData.name = snapshot.data()!['name'];
+        userProviderData.phone = snapshot.data()!['phone'];
       },
     );
   }

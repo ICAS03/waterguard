@@ -35,26 +35,10 @@ class _NavigationState extends State<Navigation> {
   ];
   @override
   Widget build(BuildContext context) {
-    double NavBarIconSize = 32;
+    double navBarIconSize = 32;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: custom_color.primaryBlue,
-      floatingActionButton: Container(
-        height: 64,
-        width: 64,
-        child: FloatingActionButton(
-          backgroundColor: currentIndex == 2
-              ? custom_color.primaryAccent
-              : custom_color.primaryBlue,
-          onPressed: () => navigationBar.onTap!(2),
-          child: Icon(
-            Icons.home_rounded,
-            size: NavBarIconSize,
-            color: custom_color.backgroundwhite,
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: screens[currentIndex],
       bottomNavigationBar: Container(
         height: 80,
@@ -66,15 +50,14 @@ class _NavigationState extends State<Navigation> {
         ),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(28), topRight: Radius.circular(28)),
+            topLeft: Radius.circular(28),
+            topRight: Radius.circular(28),
+          ),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: custom_color.primaryBlue,
             selectedItemColor: custom_color.primaryAccent,
             unselectedItemColor: custom_color.backgroundwhite,
-            key: globalKey,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
             currentIndex: currentIndex,
             onTap: (int newIndex) {
               setState(() {
@@ -83,35 +66,38 @@ class _NavigationState extends State<Navigation> {
             },
             items: [
               BottomNavigationBarItem(
-                  label: '',
-                  icon: Icon(
-                    Icons.handshake_rounded,
-                    size: NavBarIconSize,
-                  )),
-              BottomNavigationBarItem(
-                  label: '',
-                  icon: Icon(
-                    Icons.navigation_rounded,
-                    size: NavBarIconSize,
-                  )),
-              const BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
-                  Icons.home_rounded,
-                  size: 0,
+                  Icons.handshake_rounded,
+                  size: navBarIconSize,
                 ),
               ),
               BottomNavigationBarItem(
-                  label: '',
-                  icon: Icon(
-                    Icons.person_pin_rounded,
-                    size: NavBarIconSize,
-                  )),
+                label: '',
+                icon: Icon(
+                  Icons.navigation_rounded,
+                  size: navBarIconSize,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: '',
+                icon: Icon(
+                  Icons.home_rounded,
+                  size: navBarIconSize,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: '',
+                icon: Icon(
+                  Icons.person_pin_rounded,
+                  size: navBarIconSize,
+                ),
+              ),
               BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
                   Icons.person_rounded,
-                  size: NavBarIconSize,
+                  size: navBarIconSize,
                 ),
               ),
             ],

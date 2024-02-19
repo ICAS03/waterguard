@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:waterguard/auth.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
 import 'package:waterguard/models/user_model.dart';
 import 'package:waterguard/providers/user_provider.dart';
@@ -16,11 +18,41 @@ class profileScreen extends StatefulWidget {
 class _profileScreen extends State<profileScreen> {
   bool isHovered = false;
 
-  @override
-  Widget build(BuildContext context) {
-    UserModel currentUser =
-        Provider.of<UserProvider>(context, listen: false).userProviderData;
+  UserModel userProviderData = UserModel(
+    id: '', // Initialize with the desired value
+    name: '', // Initialize with the desired value
+    email: '',
+    phone: '',
+    address: '',
+  );
 
+  @override
+  void initState() {
+    super.initState();
+    fetchUserData();
+  }
+
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
+  fetchUserData() async {
+    await _firebaseFirestore
+        .collection('user')
+        .doc(Auth().currentUser!.uid)
+        .get()
+        .then(
+      (snapshot) {
+        setState(() {
+          userProviderData.address = snapshot.data()!['address'];
+          userProviderData.email = snapshot.data()!['email'];
+          userProviderData.id = snapshot.data()!['id'];
+          userProviderData.name = snapshot.data()!['name'];
+          userProviderData.phone = snapshot.data()!['phone'];
+        });
+      },
+    );
+  }
+
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: custom_color.secondaryYellow,
@@ -61,7 +93,7 @@ class _profileScreen extends State<profileScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "${currentUser.name}",
+                          "${userProviderData.name}",
                           style: TextStyle(
                               color: custom_color.black, fontSize: 25),
                         ),
