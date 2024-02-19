@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
+import 'package:waterguard/widgets/alert_card.dart';
+import 'package:waterguard/widgets/evacuation_card.dart';
 import 'package:waterguard/widgets/map_card.dart';
+import 'package:waterguard/widgets/menu_card.dart';
 
 class mainMapScreen extends StatefulWidget {
   static const routeName = '/mainmap';
@@ -72,11 +75,59 @@ class _mainMapScreenState extends State<mainMapScreen> {
               ],
             ),
           ),
-          actions: [IconButton(onPressed: () => {}, icon: Icon(Icons.search))],
+          actions: [
+            IconButton(
+                onPressed: () => {
+                      showModalBottomSheet(
+                          isDismissible: true,
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) => alertCard(
+                              datetime: "7/2/2024 13:00:24",
+                              location: "Subang Jaya , Selangor",
+                              waterdepth: 155.00,
+                              risklevel: "Dangerous",
+                              evacuationcentre: "SMK USJ 12",
+                              affectedroads: "Jalan USJ 12/1 , Jalan USJ 13/4"))
+                    },
+                icon: Icon(
+                  Icons.notifications_active_rounded,
+                  color: custom_color.backgroundwhite.withOpacity(0.1),
+                ))
+          ],
         ),
-        body: Container(
+        body: Stack(
           alignment: Alignment.center,
-          child: mapCard(),
+          children: [
+            mapCard(),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 13.0),
+              alignment: Alignment.bottomLeft,
+              child: GestureDetector(
+                  onTap: () => showModalBottomSheet(
+                      isDismissible: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => menuCard()),
+                  child: Icon(Icons.list_alt_outlined)),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 35.0, horizontal: 13.0),
+              alignment: Alignment.bottomLeft,
+              child: GestureDetector(
+                  onTap: () => showModalBottomSheet(
+                      isDismissible: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (context) => evacuationCard(
+                          centrename: "SMK USJ 12",
+                          location: "Subang Jaya , Selangor",
+                          currentCapacity: 150,
+                          currentStatus: "Full",
+                          saferoutes: "Jalan USJ 4/5 , Jalan USJ 4/10")),
+                  child: Icon(Icons.pin_drop_outlined)),
+            ),
+          ],
         ));
   }
 }

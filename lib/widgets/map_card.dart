@@ -52,12 +52,14 @@ class _mapCardState extends State<mapCard> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-        mapType: MapType.normal,
-        initialCameraPosition: _currentLoc,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        markers: _floodmarker.values.toSet());
+      mapType: MapType.normal,
+      initialCameraPosition: _currentLoc,
+      onMapCreated: (GoogleMapController controller) {
+        _controller.complete(controller);
+      },
+      markers: _floodmarker.values.toSet(),
+      onTap: (LatLng) => {},
+    );
   }
 
   _setfloodmarker() async {
@@ -69,6 +71,7 @@ class _mapCardState extends State<mapCard> {
           markerId: MarkerId(i.toString()),
           position: data[i]['position'],
           icon: markerIcon);
+
       setState(() {});
     }
   }

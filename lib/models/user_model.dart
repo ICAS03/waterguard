@@ -1,14 +1,15 @@
 class UserModel {
+  String address;
+  String email;
   String id;
   String name;
-  String email;
   String phone;
-  String address;
 
-  UserModel(
-      {required this.id,
-      required this.name,
-      required this.email,
-      required this.phone,
-      required this.address});
+  UserModel({
+    required this.address,
+    required this.email,
+    required this.id,
+    required this.name,
+    required this.phone,
+  });
 }

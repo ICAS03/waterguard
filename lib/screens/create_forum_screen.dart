@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:waterguard/auth.dart';
 import 'package:waterguard/models/forum_model.dart';
 import 'package:waterguard/models/user_model.dart';
 import 'package:waterguard/providers/forum_provider.dart';
@@ -18,15 +20,49 @@ class CreateNewForum extends StatefulWidget {
 class _CreateNewForumState extends State<CreateNewForum> {
   TextEditingController postController = TextEditingController();
 
+  UserModel userProviderData = UserModel(
+    id: '', // Initialize with the desired value
+    name: '', // Initialize with the desired value
+    email: '',
+    phone: '',
+    address: '',
+  );
+
   @override
+  void initState() {
+    super.initState();
+    fetchUserData();
+  }
+
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+
+  fetchUserData() async {
+    await _firebaseFirestore
+        .collection('user')
+        .doc(Auth().currentUser!.uid)
+        .get()
+        .then(
+      (snapshot) {
+        setState(() {
+          userProviderData.address = snapshot.data()!['address'];
+          userProviderData.email = snapshot.data()!['email'];
+          userProviderData.id = snapshot.data()!['id'];
+          userProviderData.name = snapshot.data()!['name'];
+          userProviderData.phone = snapshot.data()!['phone'];
+        });
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     var _provider = Provider.of<ForumProvider>(context, listen: false);
-    UserModel currentUser =
-        Provider.of<UserProvider>(context, listen: false).userProviderData;
+
+    /*UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;*/
 
     ForumModel _loadedForum = ForumModel(
-      id: "",
-      authorName: currentUser.name,
+      id: userProviderData.id,
+      authorName: userProviderData.name,
       content: postController.text,
       numOfLikes: 0,
       numOfShares: 0,
@@ -64,13 +100,12 @@ class _CreateNewForumState extends State<CreateNewForum> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      currentUser.name,
+                      userProviderData.name,
                       style: TextStyle(color: custom_color.black),
                     ),
                     Text(
-                      "@${currentUser.name}",
-                      style:
-                          TextStyle(color: custom_color.grey.withOpacity(0.5)),
+                      "@${userProviderData.name}",
+                      style: TextStyle(color: custom_color.grey),
                     ),
                   ],
                 ),
@@ -111,8 +146,20 @@ class _CreateNewForumState extends State<CreateNewForum> {
                       const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          setState(() {
+                          setState(() async {
                             _provider.loadedForumList.add(_loadedForum);
+
+                            await FirebaseFirestore.instance
+                                .collection('forum')
+                                .add({
+                              'id': _loadedForum.id,
+                              'authorName': _loadedForum.authorName,
+                              'content': postController.text,
+                              'numOfLikes': _loadedForum.numOfLikes,
+                              'numOfShares': _loadedForum.numOfShares,
+                              'numOfReplies': _loadedForum.numOfReplies,
+                            });
+
                             Navigator.of(context).pop();
                           });
                         },

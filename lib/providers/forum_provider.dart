@@ -6,10 +6,10 @@ class ForumProvider with ChangeNotifier {
   List<String> forumIdList = [];
   List<ForumModel> loadedForumList = [];
 
-  Future<void>? createNewForum(String content) {
+  /*Future<void>? createNewForum(String content) {
     FirebaseFirestore.instance.collection('forum').doc().set(
       {
-        "authorName": '',
+        "authorName": loadedForumList.map((e) => null),
         "content": content,
         'id': '',
         'numOfLikes': '',
@@ -17,7 +17,7 @@ class ForumProvider with ChangeNotifier {
         'numOfShares': '',
       },
     );
-  }
+  }*/
 
   Future<void> fetchForumId() async {
     print('fetch');
