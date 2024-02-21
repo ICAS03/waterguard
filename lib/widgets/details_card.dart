@@ -80,7 +80,7 @@ class detailsCard extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        "Risk Level: Dangerous",
+                        "Risk Level: ${flood.risklevel}",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
@@ -90,7 +90,7 @@ class detailsCard extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        "Nearby Evacuation Centre: SMK USJ 13",
+                        "Nearby Evacuation Centre: ${flood.evacuationcentre}",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
@@ -100,7 +100,7 @@ class detailsCard extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        "Affected Roads : Jalan USJ 4/2 , Jalan USJ 4/10",
+                        "Affected Roads : ${flood.affectedroads}",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,

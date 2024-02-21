@@ -6,6 +6,7 @@ import 'package:waterguard/auth.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
 import 'package:waterguard/models/user_model.dart';
 import 'package:waterguard/providers/user_provider.dart';
+import 'package:waterguard/screens/loading_screen.dart';
 import 'package:waterguard/widgets/donation_history_card.dart';
 
 class profileScreen extends StatefulWidget {
@@ -17,6 +18,7 @@ class profileScreen extends StatefulWidget {
 
 class _profileScreen extends State<profileScreen> {
   bool isHovered = false;
+  bool isLoading = true;
 
   UserModel userProviderData = UserModel(
     id: '', // Initialize with the desired value
