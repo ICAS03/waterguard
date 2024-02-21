@@ -9,6 +9,7 @@ import 'package:waterguard/providers/flood_provider.dart';
 import 'package:waterguard/providers/forum_provider.dart';
 import 'package:waterguard/providers/user_provider.dart';
 import 'package:waterguard/screens/create_forum_screen.dart';
+import 'package:waterguard/screens/discover_screen.dart';
 import 'package:waterguard/screens/donation_history_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
 import 'package:waterguard/screens/last_donation_screen.dart';
@@ -21,6 +22,7 @@ import 'package:waterguard/screens/new_card_screen.dart';
 import 'package:waterguard/screens/onBoarding_screen.dart';
 import 'package:waterguard/screens/payment_screen.dart';
 import 'package:waterguard/screens/register_screen.dart';
+import 'package:waterguard/screens/searching_screen.dart';
 import 'package:waterguard/screens/single_donation_screen.dart';
 import 'package:waterguard/screens/volunteers_details_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
@@ -65,6 +67,8 @@ class MyApp extends StatelessWidget {
               lastVolunteerScreen.routeName: (context) => lastVolunteerScreen(),
               Navigation.routeName: (context) => Navigation(),
               ExploreScreen.routeName: (context) => ExploreScreen(),
+              SearchingScreen.routeName: (context) => SearchingScreen(),
+              DiscoverScreen.routeName: (context) => DiscoverScreen(),
               CreateNewForum.routeName: (context) => CreateNewForum(),
             }));
   }
