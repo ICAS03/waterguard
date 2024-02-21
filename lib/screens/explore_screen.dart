@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:waterguard/screens/discover_screen.dart';
+import 'package:waterguard/screens/searching_screen.dart';
 import '../models/colors.dart';
+// import 'package:adhoc_plugin/adhoc_plugin.dart';
 
-class ExploreScreen extends StatelessWidget {
+class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
   static const routeName = '/mainexplore';
+
+  @override
+  State<ExploreScreen> createState() => _ExploreScreenState();
+}
+
+class _ExploreScreenState extends State<ExploreScreen> {
+  // TransferManager _manager = TransferManager(false);
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +79,8 @@ class ExploreScreen extends StatelessWidget {
                 onPressed: () {
                   // Add your onPressed callback function here
                   // This function will be called when the button is pressed
+                  // _listen();
+                  Navigator.of(context).pushNamed(SearchingScreen.routeName);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -101,6 +118,8 @@ class ExploreScreen extends StatelessWidget {
                 onPressed: () {
                   // Add your onPressed callback function here
                   // This function will be called when the button is pressed
+                  // _listen();
+                  Navigator.of(context).pushNamed(DiscoverScreen.routeName);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -128,4 +147,42 @@ class ExploreScreen extends StatelessWidget {
       ),
     );
   }
+
+  // void _listen() {
+  //   _manager.eventStream.listen((event) {
+  //     switch (event.type) {
+  //       case AdHocType.onDeviceDiscovered:
+  //         var device = event.device as AdHocDevice;
+  //         break;
+  //       case AdHocType.onDiscoveryStarted:
+  //         break;
+  //       case AdHocType.onDiscoveryCompleted:
+  //         var discovered = event.data as Map<String?, AdHocDevice?>;
+  //         break;
+  //       case AdHocType.onDataReceived:
+  //         var data = event.data as Object;
+  //         break;
+  //       case AdHocType.onForwardData:
+  //         var data = event.data as Object;
+  //         break;
+  //       case AdHocType.onConnection:
+  //         var device = event.device as AdHocDevice;
+  //         break;
+  //       case AdHocType.onConnectionClosed:
+  //         var device = event.device as AdHocDevice;
+  //         break;
+  //       case AdHocType.onInternalException:
+  //         var exception = event.data as Exception;
+  //         break;
+  //       case AdHocType.onGroupInfo:
+  //         var info = event.data as int;
+  //         break;
+  //       case AdHocType.onGroupDataReceived:
+  //         var data = event.data as Object;
+  //         break;
+  //       default:
+  //         print("its running _listen");
+  //     }
+  //   });
+  // }
 }
