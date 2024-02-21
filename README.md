@@ -26,6 +26,7 @@ The technological foundation of WaterGuard is equally robust, utilizing Flutter 
 4. Start navigating and using the application's features.
 
 ## Features
+
 - Seamless Sign-Up / Login With Firebase Auth
 - Flood Risk Mapping
 - Community and Forum
@@ -33,6 +34,7 @@ The technological foundation of WaterGuard is equally robust, utilizing Flutter 
 - Donation & Volunteer Service Page
 
 ## Technologies
+
 External Packages and Dependencies:
 - [Cupertino Icons](https://pub.dev/packages/cupertino_icons) - Version: ^1.0.2
 - [Smooth Page Indicator](https://pub.dev/packages/smooth_page_indicator) - Version: ^1.1.0
@@ -49,6 +51,7 @@ External Packages and Dependencies:
 
 
 ## Contributors 
+
 - [Ivy Chung Ai Shin](https://github.com/ICAS03)
 - [Zhe Khee Tang](https://github.com/jackyt0303)
-- 
+- [Nicholas Chan Wei Xian](https://github.com/nickchan01)
