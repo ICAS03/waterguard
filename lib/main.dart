@@ -16,7 +16,6 @@ import 'package:waterguard/screens/last_donation_screen.dart';
 import 'package:waterguard/screens/last_volunteer_screen.dart';
 import 'package:waterguard/screens/login_screen.dart';
 import 'package:waterguard/screens/community_screen.dart';
-import 'package:waterguard/screens/community_screen_details.dart';
 import 'package:waterguard/screens/donation_screen.dart';
 import 'package:waterguard/screens/new_card_screen.dart';
 import 'package:waterguard/screens/onBoarding_screen.dart';
