@@ -8,8 +8,6 @@ WaterGuard is a mobile application that goes beyond any other typical weather ap
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [Technologies](#technologies)
-- [Screenshots](#screenshots)
-- [Datasets](#datasets)
 - [Contributors](#contributors)
 
 ## Application Overview 
