@@ -1,6 +1,6 @@
-# WaterGuard
+# WaterGuard IoT
 
-WaterGuard is a mobile application that goes beyond any other typical weather apps, providing real-time flood risk notifications to keep users informed and prepared. With a focus on community resilience, the app features seamless donation and volunteering options, enabling users to contribute to flood relief efforts effortlessly. Notably, WaterGuard ensures communication continuity during emergencies by utilizing an ad hoc network, allowing users to stay connected and share vital information when traditional networks may be disrupted. This all-in-one solution empowers communities to proactively respond to flood risks, fostering a sense of unity and support in times of crisis.
+WaterGuard IoT is a comprehensive flood monitoring system prototype designed to provide real-time information and alerts about the water levels in rivers and other water bodies. The system is equipped with sensors that can detect the changes in water levels and send alerts to the users through their smartphones or other connected devices. WaterGuard IoT is a reliable and accurate system that can help people stay informed about potential flooding risks in their area and take necessary precautions to protect themselves and their property. It is also able to detect dangerous water rise and predict upcoming floods by studying water level patterns with the help of machine learning and Google Technologies.
 
 ## Table Of Contents
 
@@ -10,7 +10,9 @@ WaterGuard is a mobile application that goes beyond any other typical weather ap
 - [Technologies](#technologies)
 - [Contributors](#contributors)
 
-## Application Overview 
+## Prototype Overview 
+WaterGuard IoT
+
 WaterGuard is a pioneering mobile application that is meticulously designed to proactively respond to flood risks, fostering a sense of unity and support in times of crisis. WaterGuard offers a range of features to achieve this mission. Our cutting-edge quick real-time notifications about potential flood risks, ensuring users stay informed and prepared. The core feature of WaterGuard is its advanced alert system that leverages sophisticated weather data and flood risk assessments to notify users about potential flooding in their area. Through push notifications and timely updates, users can make informed decisions to protect themselves and their property. One of WaterGuard's standout features is its emergency services functionality, utilizing an ad hoc network for communication. In the event of network disruptions or overloaded communication channels during a flood, WaterGuard establishes a decentralized network among nearby users. This ad hoc network ensures that emergency messages can be relayed even in challenging communication environments, facilitating swift and effective response efforts.
 
 The technological foundation of WaterGuard is equally robust, utilizing Flutter for seamless front-end development and Cloud Firestore for a sturdy back-end architecture. Through strategic integration of APIs and external libraries, we enhance the user experience while optimizing costs.
@@ -50,6 +52,7 @@ External Packages and Dependencies:
 
 ## Contributors 
 
+- [Nicholas Chan Wei Xian](https://github.com/nickchan01)
 - [Ivy Chung Ai Shin](https://github.com/ICAS03)
 - [Zhe Khee Tang](https://github.com/jackyt0303)
-- [Nicholas Chan Wei Xian](https://github.com/nickchan01)
+
