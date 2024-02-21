@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:waterguard/auth_widget_tree.dart';
 import 'package:waterguard/models/colors.dart';
 import 'package:waterguard/navigation.dart';
+import 'package:waterguard/providers/donation_provider.dart';
+import 'package:waterguard/providers/flood_provider.dart';
 import 'package:waterguard/providers/forum_provider.dart';
 import 'package:waterguard/providers/user_provider.dart';
 import 'package:waterguard/screens/create_forum_screen.dart';
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
             value: UserProvider(),
           ),
           ChangeNotifierProvider.value(value: ForumProvider()),
+          ChangeNotifierProvider.value(value: FloodProvider()),
         ],
         child: MaterialApp(
             title: 'Flutter Demo',

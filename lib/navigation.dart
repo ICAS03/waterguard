@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:waterguard/providers/user_provider.dart';
 import 'package:waterguard/screens/community_screen.dart';
 import 'package:waterguard/screens/donation_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
+import 'package:waterguard/screens/loading_screen.dart';
 import 'package:waterguard/screens/main_map_screen.dart';
 import 'package:waterguard/screens/profile_screen.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
 
 class Navigation extends StatefulWidget {
   static const routeName = '/navigation';
-  const Navigation({super.key});
 
   @override
   State<Navigation> createState() => _NavigationState();
@@ -23,7 +25,7 @@ class _NavigationState extends State<Navigation> {
     return _NavigationState.globalKey.currentWidget as BottomNavigationBar;
   }
 
-  int currentIndex = 0;
+  int currentIndex = 2;
   bool _isLoading = true;
 
   List<Widget> screens = [
@@ -33,13 +35,27 @@ class _NavigationState extends State<Navigation> {
     CommunityScreen(),
     profileScreen(),
   ];
+
+  @override
+  initState() {
+    Provider.of<UserProvider>(context, listen: false).fetchUserData().then(
+      (_) {
+        setState(
+          () {
+            _isLoading = false;
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double navBarIconSize = 32;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: custom_color.primaryBlue,
-      body: screens[currentIndex],
+      body: _isLoading ? LoadingScreen() : screens[currentIndex],
       bottomNavigationBar: Container(
         height: 80,
         decoration: BoxDecoration(
