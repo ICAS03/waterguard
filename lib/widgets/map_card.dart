@@ -1,29 +1,16 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-List<Map<String, dynamic>> data = [
-  {
-    'id': "1",
-    'position': const LatLng(3.066038466618524, 101.61743234460398),
-    'assetPath': 'lib/assets/images/red_dot.png'
-  },
-  {
-    'id': "2",
-    'position': const LatLng(3.064096547136472, 101.61465719418023),
-    'assetPath': 'lib/assets/images/blue_dot.png'
-  },
-  {
-    'id': "3",
-    'position': const LatLng(3.0688962929108285, 101.6164007750196),
-    'assetPath': 'lib/assets/images/green_dot.png'
-  },
-  {
-    'id': "4",
-    'position': const LatLng(3.0675787177845937, 101.619683733537),
-    'assetPath': 'lib/assets/images/yellow_dot.png'
-  },
-];
+import 'package:provider/provider.dart';
+import 'package:waterguard/auth.dart';
+import 'package:waterguard/models/realflood_model.dart';
+import 'package:waterguard/models/user_model.dart';
+import 'package:waterguard/providers/realtimeflood_provider.dart';
+import 'package:waterguard/providers/update_flood_provider.dart';
+import 'package:waterguard/providers/user_provider.dart';
+import 'package:waterguard/widgets/menu_card.dart';
 
 class mapCard extends StatefulWidget {
   const mapCard({super.key});
@@ -33,46 +20,118 @@ class mapCard extends StatefulWidget {
 }
 
 class _mapCardState extends State<mapCard> {
-  final Map<String, Marker> _floodmarker = {};
-
+  //final Map<String, Marker> _floodmarker = {};
+  bool _isLoading = true;
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
+  late GoogleMapController newGoogleMapController;
+
   static const CameraPosition _currentLoc = CameraPosition(
       bearing: 192.8334901395799,
-      target: LatLng(3.064841233348692, 101.61681479351097),
+      target: LatLng(37.43021151789838, -122.08264316427048),
       zoom: 15.0);
+
+  //Gettign the user current location//
+  late bool servicePermission = false;
+  late LocationPermission permission;
+
+  Future<Position> getCurrentLocation() async {
+    servicePermission = await Geolocator.isLocationServiceEnabled();
+    if (!servicePermission) {
+      print("service disabled");
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    Position position = await Geolocator.getCurrentPosition();
+    return position;
+  }
+
+//Convert latlng to location//
+  late String place = "";
+  Future<String> _getAddressFromCoordinates(position) async {
+    if (position == null) {
+      return ""; // Return empty string if position is null
+    }
+    try {
+      List<Placemark> placemarks =
+          await placemarkFromCoordinates(position.latitude, position.longitude);
+      Placemark place = placemarks.first;
+      return "${place.locality}, ${place.country}";
+    } catch (e) {
+      print("Error getting address: $e");
+      return ""; // Return empty string on error
+    }
+  }
+
+//Set Markers//
+  Set<Marker> _markers = {};
+  Future<void> _setFloodMarkers(int flood_waterlevel) async {
+    Position position = await getCurrentLocation();
+    LatLng currentPosition = LatLng(position.latitude, position.longitude);
+    String markerAssetPath;
+    if (flood_waterlevel <= 10) {
+      print('very dangerous');
+      markerAssetPath = 'lib/assets/images/red_dot.png';
+    } else {
+      print('safe water level');
+      markerAssetPath = 'lib/assets/images/blue_dot.png';
+    }
+
+    BitmapDescriptor markerIcon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), markerAssetPath);
+
+    _markers.clear();
+    _markers.add(Marker(
+        markerId: MarkerId('flood_id'),
+        position: LatLng(position.latitude, position.longitude),
+        icon: markerIcon));
+
+    setState(() {});
+  }
 
   @override
   void initState() {
-    _setfloodmarker();
     super.initState();
+    var _waterlevel_provider =
+        Provider.of<realtimeflood_provider>(context, listen: false);
+    _waterlevel_provider.listenToRealTimeFlood();
   }
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      mapType: MapType.normal,
-      initialCameraPosition: _currentLoc,
-      onMapCreated: (GoogleMapController controller) {
-        _controller.complete(controller);
-      },
-      markers: _floodmarker.values.toSet(),
-      onTap: (LatLng) => {},
-    );
-  }
+    var _updateFloodProvider =
+        Provider.of<UpdateFloodProvider>(context, listen: false);
+    UserModel currentUser =
+        Provider.of<UserProvider>(context, listen: false).userProviderData;
+    ;
+    return Consumer<realtimeflood_provider>(
+        builder: (context, _realtimeflood_provider, _) {
+      _setFloodMarkers(_realtimeflood_provider.water_level);
+      return GoogleMap(
+        mapType: MapType.normal,
+        initialCameraPosition: _currentLoc,
+        onMapCreated: (GoogleMapController controller) async {
+          _controller.complete(controller);
+          newGoogleMapController = controller;
+          // Change to current user location//
+          Position position = await getCurrentLocation();
+          newGoogleMapController.animateCamera(CameraUpdate.newCameraPosition(
+              CameraPosition(
+                  target: LatLng(position.latitude, position.longitude),
+                  zoom: 14)));
+          place = await _getAddressFromCoordinates(position);
 
-  _setfloodmarker() async {
-    for (int i = 0; i < data.length; i++) {
-      BitmapDescriptor markerIcon = await BitmapDescriptor.fromAssetImage(
-          const ImageConfiguration(), data[i]['assetPath']);
-
-      _floodmarker[i.toString()] = Marker(
-          markerId: MarkerId(i.toString()),
-          position: data[i]['position'],
-          icon: markerIcon);
-
-      setState(() {});
-    }
+          setState(() {
+            int waterlevel = _realtimeflood_provider.water_level;
+            _updateFloodProvider.setFloodData(
+                currentUser.id, currentUser.name, waterlevel, place);
+          });
+        },
+        markers: _markers,
+      );
+    });
   }
 }

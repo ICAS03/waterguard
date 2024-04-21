@@ -7,6 +7,8 @@ import 'package:waterguard/navigation.dart';
 import 'package:waterguard/providers/donation_provider.dart';
 import 'package:waterguard/providers/flood_provider.dart';
 import 'package:waterguard/providers/forum_provider.dart';
+import 'package:waterguard/providers/realtimeflood_provider.dart';
+import 'package:waterguard/providers/update_flood_provider.dart';
 import 'package:waterguard/providers/user_provider.dart';
 import 'package:waterguard/screens/create_forum_screen.dart';
 import 'package:waterguard/screens/discover_screen.dart';
@@ -41,11 +43,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider.value(
-            value: UserProvider(),
-          ),
+          ChangeNotifierProvider.value(value: UserProvider()),
+          ChangeNotifierProvider.value(value: UpdateFloodProvider()),
           ChangeNotifierProvider.value(value: ForumProvider()),
           ChangeNotifierProvider.value(value: FloodProvider()),
+          ChangeNotifierProvider.value(value: realtimeflood_provider()),
         ],
         child: MaterialApp(
             title: 'Flutter Demo',
