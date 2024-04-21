@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:waterguard/auth.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
 import 'package:waterguard/navigation.dart';
@@ -18,6 +20,9 @@ class _loginScreenState extends State<loginScreen> {
   String errorMessage = '';
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +108,9 @@ class _loginScreenState extends State<loginScreen> {
                     height: 40,
                   ),
                   GestureDetector(
-                    onTap: () => {signInWithEmailAndPassword()},
+                    onTap: ()  => {
+                      signInWithEmailAndPassword(),
+                    },
                     child: Container(
                         width: double.infinity,
                         height: 50,
@@ -208,8 +215,8 @@ class _loginScreenState extends State<loginScreen> {
             emailController.text,
             passwordController.text,
           )
-          .then(
-              (value) => Navigator.of(context).pushNamed(Navigation.routeName));
+          .then((value) =>
+              {Navigator.of(context).pushNamed(Navigation.routeName)});
     } on FirebaseAuthException catch (e) {
       setState(
         () {

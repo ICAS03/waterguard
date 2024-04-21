@@ -8,6 +8,7 @@ import 'package:waterguard/widgets/alert_card.dart';
 import 'package:waterguard/widgets/evacuation_card.dart';
 import 'package:waterguard/widgets/map_card.dart';
 import 'package:waterguard/widgets/menu_card.dart';
+import 'package:geolocator/geolocator.dart';
 
 class mainMapScreen extends StatefulWidget {
   static const routeName = '/mainmap';
@@ -84,7 +85,7 @@ class _mainMapScreenState extends State<mainMapScreen> {
                           context: context,
                           builder: (context) => alertCard(
                               datetime: "7/2/2024 13:00:24",
-                              location: "Subang Jaya , Selangor",
+                              location: "USJ 4/1",
                               waterdepth: 155.00,
                               risklevel: "Dangerous",
                               evacuationcentre: "SMK USJ 12",

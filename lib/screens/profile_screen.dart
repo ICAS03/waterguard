@@ -99,7 +99,11 @@ class _profileScreen extends State<profileScreen> {
                           style: TextStyle(
                               color: custom_color.black, fontSize: 25),
                         ),
-                        Icon(Icons.edit_outlined)
+                        Icon(Icons.edit_outlined),
+                        GestureDetector(
+                          onTap: () => {},
+                          child: Text("LogOut"),
+                        )
                       ],
                     ),
                   ],
