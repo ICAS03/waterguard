@@ -28,10 +28,15 @@ import 'package:waterguard/screens/single_donation_screen.dart';
 import 'package:waterguard/screens/volunteers_details_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
 import 'models/colors.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized(
+  );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
