@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "529004177168",
-    "firebase_url": "https://uno-flood-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "uno-flood",
-    "storage_bucket": "uno-flood.appspot.com"
+    "project_number": "1085305309235",
+    "firebase_url": "https://floodmanagement-b7bfe-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "floodmanagement-b7bfe",
+    "storage_bucket": "floodmanagement-b7bfe.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:529004177168:android:925f55ccf5b86ddabbe795",
+        "mobilesdk_app_id": "1:1085305309235:android:2fb668ba7ebd9c77f9bb46",
         "android_client_info": {
           "package_name": "com.example.waterguard"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBUQuEBZvXOUHdrF7N5my7I7_qn_vm5Jgk"
+          "current_key": "AIzaSyAZypt8klA4FxiORKxU0gFt4nWdhCHIK_Q"
         }
       ],
       "services": {
