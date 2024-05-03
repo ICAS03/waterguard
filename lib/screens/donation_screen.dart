@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:waterguard/widgets/donation_card.dart';
 import 'package:waterguard/widgets/volunteers_card.dart';
 import '../models/colors.dart';

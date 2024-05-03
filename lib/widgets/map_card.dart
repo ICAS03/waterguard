@@ -69,9 +69,30 @@ class _mapCardState extends State<mapCard> {
 //Set Markers//
   Set<Marker> _markers = {};
   Future<void> _setFloodMarkers(int flood_waterlevel) async {
+    const flood = 70;
+    const high = 75;
+    const medium = 80;
+    const low = 94;
     Position position = await getCurrentLocation();
     LatLng currentPosition = LatLng(position.latitude, position.longitude);
     String markerAssetPath;
+
+    if (flood_waterlevel <= flood) {
+      print("flood");
+      markerAssetPath = 'lib/assets/images/red_dot.png';
+    } else if (flood_waterlevel >= flood && flood_waterlevel <= high) {
+      print("high");
+      markerAssetPath = 'lib/assets/images/yellow_dot.png';
+    } else if (flood_waterlevel >= high && flood_waterlevel < medium) {
+      print("medium");
+      markerAssetPath = 'lib/assets/images/blue_dot.png';
+    } else if (flood_waterlevel >= medium && flood_waterlevel <= low) {
+      print("low");
+      markerAssetPath = 'lib/assets/images/blue_dot.png';
+    } else {
+      print("very low");
+      markerAssetPath = 'lib/assets/images/green_dot.png';
+    }
     if (flood_waterlevel <= 10) {
       print('very dangerous');
       markerAssetPath = 'lib/assets/images/red_dot.png';

@@ -9,6 +9,7 @@ import 'package:waterguard/screens/loading_screen.dart';
 import 'package:waterguard/screens/main_map_screen.dart';
 import 'package:waterguard/screens/profile_screen.dart';
 import 'package:waterguard/models/colors.dart' as custom_color;
+import 'package:waterguard/screens/weatherreport_screen.dart';
 
 class Navigation extends StatefulWidget {
   static const routeName = '/navigation';
@@ -30,7 +31,7 @@ class _NavigationState extends State<Navigation> {
 
   List<Widget> screens = [
     DonationScreen(),
-    ExploreScreen(),
+    WeatherReportScreen(),
     mainMapScreen(),
     CommunityScreen(),
     profileScreen(),
@@ -91,7 +92,7 @@ class _NavigationState extends State<Navigation> {
               BottomNavigationBarItem(
                 label: '',
                 icon: Icon(
-                  Icons.navigation_rounded,
+                  Icons.feedback_rounded,
                   size: navBarIconSize,
                 ),
               ),
