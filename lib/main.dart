@@ -27,13 +27,13 @@ import 'package:waterguard/screens/searching_screen.dart';
 import 'package:waterguard/screens/single_donation_screen.dart';
 import 'package:waterguard/screens/volunteers_details_screen.dart';
 import 'package:waterguard/screens/explore_screen.dart';
+import 'package:waterguard/screens/weatherreport_screen.dart';
 import 'models/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(
-  );
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -76,6 +76,7 @@ class MyApp extends StatelessWidget {
               SearchingScreen.routeName: (context) => SearchingScreen(),
               DiscoverScreen.routeName: (context) => DiscoverScreen(),
               CreateNewForum.routeName: (context) => CreateNewForum(),
+              WeatherReportScreen.routeName: (context) => WeatherReportScreen(),
             }));
   }
 }
