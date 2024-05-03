@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,17 @@ class realtimeflood_provider with ChangeNotifier {
       if (event.snapshot.exists) {
         water_level =
             int.parse(event.snapshot.child('us_data').value.toString());
+        if (water_level <= 75){
+          // showNotification
+          AwesomeNotifications().createNotification(content: 
+            NotificationContent(
+              id: 1, 
+              channelKey: "basic_channel", 
+              title: "is it working ", 
+              body: "hopefully yes!!!"
+              ) 
+          );
+        }
         notifyListeners(); // Notify listeners of the change
       }
     });
