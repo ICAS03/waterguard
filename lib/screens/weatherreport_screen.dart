@@ -83,26 +83,24 @@ class _WeatherReportScreenState extends State<WeatherReportScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           OptionButton(
-                              icon: Icons.sunny,
-                              text: "Clear Sky",
-                              isSelected: selectedWeather == 'Clear Sky',
-                              onPressed: {isSelected}),
+                            icon: Icons.sunny,
+                            text: "Clear Sky",
+                            isSelected: selectedWeather == 'Clear Sky',
+                          ),
                           OptionButton(
-                              icon: Icons.cloud,
-                              text: "Cloudy",
-                              isSelected: selectedWeather == 'Cloudy',
-                              onPressed: {}),
+                            icon: Icons.cloud,
+                            text: "Cloudy",
+                            isSelected: selectedWeather == 'Cloudy',
+                          ),
                           OptionButton(
                             icon: Icons.bolt,
                             text: 'Thunderstorm',
                             isSelected: selectedWeather == 'Thunderstorm',
-                            onPressed: {},
                           ),
                           OptionButton(
                             icon: Icons.water_drop,
                             text: 'Light Rain',
                             isSelected: selectedWeather == 'Light Rain',
-                            onPressed: {},
                           ),
                           SizedBox(height: 10.0),
                           Divider(thickness: 1.0),
@@ -158,43 +156,50 @@ class _WeatherReportScreenState extends State<WeatherReportScreen> {
 }
 
 //option button//
-class OptionButton extends StatelessWidget {
+class OptionButton extends StatefulWidget {
   final IconData icon;
   final String text;
   final bool isSelected;
-  final void onPressed;
 
   const OptionButton({
-    Key? key,
     required this.icon,
     required this.text,
     required this.isSelected,
-    required this.onPressed,
-  }) : super(key: key);
+  });
+
+  @override
+  _OptionButtonState createState() => _OptionButtonState();
+}
+
+class _OptionButtonState extends State<OptionButton> {
+  bool isClicked = false;
 
   @override
   Widget build(BuildContext context) {
-    Color buttonColor = isSelected
-        ? custom_color.primaryBlue
-        : const Color.fromRGBO(238, 238, 238, 1);
     return TextButton(
-      onPressed: () => {},
+      onPressed: () => {
+        setState(() {
+          isClicked = !isClicked;
+        })
+      },
       style: TextButton.styleFrom(
-          backgroundColor: buttonColor,
+          backgroundColor: isClicked
+              ? custom_color.primaryBlue
+              : Color.fromRGBO(238, 238, 238, 1),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0))),
       child: Row(
         children: [
           Icon(
-            icon,
-            color: isSelected ? Colors.white : Colors.black,
+            widget.icon,
+            color: isClicked ? Colors.white : Colors.black,
           ),
           Padding(
             padding: EdgeInsets.only(left: 10),
           ),
           Text(
-            text,
-            style: TextStyle(color: isSelected ? Colors.white : Colors.black),
+            widget.text,
+            style: TextStyle(color: isClicked ? Colors.white : Colors.black),
           )
         ],
       ),
@@ -202,31 +207,39 @@ class OptionButton extends StatelessWidget {
   }
 }
 
-class OptionButton2 extends StatelessWidget {
+//optionButton2//
+class OptionButton2 extends StatefulWidget {
   final bool isFlood;
   final String details;
 
-  const OptionButton2({Key? key, required this.isFlood, required this.details});
+  const OptionButton2({required this.isFlood, required this.details});
 
   @override
+  _OptionButton2State createState() => _OptionButton2State();
+}
+
+class _OptionButton2State extends State<OptionButton2> {
+  bool isClicked = false;
+  @override
   Widget build(BuildContext context) {
-    Color buttonColor = isFlood
-        ? custom_color.primaryBlue
-        : const Color.fromRGBO(238, 238, 238, 1);
     return Container(
       child: Column(
         children: [
           TextButton(
-            onPressed: () => {},
+            onPressed: () => {
+              setState(() {
+                isClicked = !isClicked;
+              })
+            },
             style: TextButton.styleFrom(
-                backgroundColor: buttonColor,
+                backgroundColor: Color.fromRGBO(238, 238, 238, 1),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0))),
             child: Row(
               children: [
                 Icon(
                   Icons.check_circle_rounded,
-                  color: isFlood ? Colors.white : Colors.green,
+                  color: isClicked ? Colors.green : Colors.grey,
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
@@ -235,16 +248,20 @@ class OptionButton2 extends StatelessWidget {
                   'No Flood',
                   style: TextStyle(
                       fontSize: 16,
-                      color: isFlood ? Colors.white : Colors.black),
+                      color: isClicked ? Colors.black : Colors.grey),
                 )
               ],
             ),
           ),
           SizedBox(height: 10),
           TextButton(
-            onPressed: () => {},
+            onPressed: () => {
+              setState(() {
+                isClicked = !isClicked;
+              })
+            },
             style: TextButton.styleFrom(
-                backgroundColor: buttonColor,
+                backgroundColor: Color.fromRGBO(238, 238, 238, 1),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0))),
             child: Column(
@@ -253,7 +270,7 @@ class OptionButton2 extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.flood_rounded,
-                      color: isFlood ? Colors.white : Colors.red,
+                      color: isClicked ? Colors.red : Colors.white,
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 10),
@@ -262,7 +279,7 @@ class OptionButton2 extends StatelessWidget {
                       'Flood',
                       style: TextStyle(
                           fontSize: 16,
-                          color: isFlood ? Colors.white : Colors.black),
+                          color: isClicked ? Colors.white : Colors.black),
                     ),
                   ],
                 ),
