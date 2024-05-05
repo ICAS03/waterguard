@@ -93,13 +93,6 @@ class _mapCardState extends State<mapCard> {
       print("very low");
       markerAssetPath = 'lib/assets/images/green_dot.png';
     }
-    if (flood_waterlevel <= 10) {
-      print('very dangerous');
-      markerAssetPath = 'lib/assets/images/red_dot.png';
-    } else {
-      print('safe water level');
-      markerAssetPath = 'lib/assets/images/blue_dot.png';
-    }
 
     BitmapDescriptor markerIcon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(), markerAssetPath);
