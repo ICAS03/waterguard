@@ -27,7 +27,7 @@ This project is a starting point for a Flutter application.
 - Seamless Sign-Up / Login With Firebase Auth
 - Flood Risk Mapping
 - Community and Forum
-- Ad Hoc Emergency Service
+- User Input
 - Donation & Volunteer Service Page
 
 ## Technologies
